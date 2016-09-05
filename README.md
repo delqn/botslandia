@@ -119,6 +119,7 @@ Run with a heroku DB connection: `DATABASE_URL=$(heroku config:get DATABASE_URL 
 - clean heroku: `heroku config:set SBT_CLEAN=true -a botslandia` # https://stackoverflow.com/questions/25101792/error-pushing-to-heroku-when-route-is-removed-from-play-framework
 
 ## Google OAuth2
+ - setup: https://console.developers.google.com/apis/credentials
  - added in /etc/hosts:  127.0.0.1 botslandia.herokuapp.com
  - had to temporarily set-up the heroku instance to run on port 9000 so Google can verify http://botslandia.herokuapp.com:9000/_oauth-callback/ as being my own.
 
