@@ -16,16 +16,17 @@ GET    /webjars/*file              controllers.WebJarAssets.at(file)
 
 POST    /target                    controllers.Application.fileUpload
 
-GET    /_oauth-callback            controllers.Application.oauthCallback(code: Option[String], state: Option[String])
-GET    /_oauth-success             controllers.Application.oauthSuccess
-GET    /_oauth-success/            controllers.Application.oauthSuccess
-GET    /_token-info                controllers.Application.tokenInfo
-GET    /_user-info                 controllers.Application.userInfoJson
-GET    /user-profile               controllers.Application.userProfile
-GET    /user-info                  controllers.Application.userInfo
-GET    /login-google               controllers.Application.loginGoogle
-GET    /logout                     controllers.Application.logout
-GET    /file                       controllers.Application.file
+GET    /_oauth-callback            controllers.Auth.oauthCallback(code: Option[String], state: Option[String])
+GET    /_oauth-success             controllers.Auth.oauthSuccess
+GET    /_oauth-success/            controllers.Auth.oauthSuccess
+GET    /_token-info                controllers.Auth.tokenInfo
+GET    /_user-info                 controllers.Auth.userInfoJson
+GET    /user-profile               controllers.Auth.userProfile
+GET    /user-info                  controllers.Auth.userInfo
+GET    /login-google               controllers.Auth.loginGoogle
+GET    /logout                     controllers.Auth.logout
+
+GET    /file                       controllers.Files.file
 
 GET    /chatbot                    controllers.Application.chatBot
 POST   /chatbot                    controllers.Application.chatBot
