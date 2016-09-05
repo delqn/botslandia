@@ -29,7 +29,7 @@ GET    /file                       controllers.Application.file
 
 GET    /chatbot                    controllers.Application.chatBot
 POST   /chatbot                    controllers.Application.chatBot
-POST   /kik-bot                    controllers.Application.kikBot
-GET    /kik-bot                    controllers.Application.kikBotGetConfig
+POST   /kik-bot                    controllers.KikBot.kikBot
+GET    /kik-bot                    controllers.KikBot.kikBotGetConfig
 GET    /msbot                      controllers.Application.msBot
 POST   /msbot                      controllers.Application.msBot

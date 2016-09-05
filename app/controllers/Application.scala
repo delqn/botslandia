@@ -258,44 +258,6 @@ object Application extends Controller {
       Ok(request.getQueryString("hub.challenge").getOrElse(text)) }
   }
 
-  def kikBot() = Action.async { request =>
-    implicit val app = Play.current
-    val token = sys.env("KIK_TOKEN")
-    var body: JsValue = null
-    var text: String = null
-    try {
-      val message = (request.body.asJson.get \ "messages")(0)
-      text = Bot.parseInputGetOutput((message \ "body").toString)
-      val to = (message \ "from").toString
-      val chatId = (message \ "chatId").toString
-      body = Json.parse(s"""{
-        "messages": [
-            {
-                "body": "$text",
-                "to": $to,
-                "type": "text",
-                "chatId": $chatId
-            }
-        ]}""")
-    } catch {
-      case e: Throwable => println(e)
-    }
-    KikBotMessage.create(new KikBotMessage(0, request.toString() + "  #  " + request.body.toString ))
-    WS.url("https://api.kik.com/v1/message").
-      withHeaders(HeaderNames.AUTHORIZATION -> s"Basic $token").
-      post(body).map { response =>
-      ChatBotMessage.create(new ChatBotMessage(0, response.toString + "  #  " + response.body.toString ))
-      Ok(text) }
-  }
-
-  def kikBotGetConfig() = Action.async { request =>
-    implicit val app = Play.current
-    val token = sys.env("KIK_TOKEN")
-    WS.url("https://api.kik.com/v1/config").
-      withHeaders(HeaderNames.AUTHORIZATION -> s"Basic $token", HeaderNames.CONTENT_TYPE -> "application/json").
-      get().map { response => Ok(response.json.toString) }
-  }
-
   def msBot() = Action { request =>
       Ok("ok")
   }
