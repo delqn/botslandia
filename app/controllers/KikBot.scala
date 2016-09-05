@@ -1,22 +1,16 @@
 package controllers
 
-import com.google.common.io.BaseEncoding
-import play.api.mvc.{Action, Controller, Session}
-import java.io.FileInputStream
+import scala.concurrent.ExecutionContext.Implicits.global
 
-import models.{ChatBotMessage, File, KikBotMessage, User}
-import java.util.UUID
-
+import play.api.mvc.{Action, Controller}
 import play.api.http.HeaderNames
 import play.api.libs.ws.WS
 import play.api.Play
 import play.api.libs.json._
-import utils.Bot
 
-import scala.concurrent.duration._
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.{Await, Future}
-import scala.util.{Failure, Success}
+import models.{ChatBotMessage, KikBotMessage}
+
+import utils.Bot
 
 
 class KikBot extends Controller {

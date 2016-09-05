@@ -1,24 +1,16 @@
 package controllers
 
-import com.google.common.io.BaseEncoding
-import play.api.mvc.{Action, Controller, Session}
-import java.io.FileInputStream
+import scala.concurrent.ExecutionContext.Implicits.global
 
-import models.{ChatBotMessage, File, KikBotMessage, User}
-import java.util.UUID
-
-import play.api.http.HeaderNames
-import play.api.libs.ws.WS
 import play.api.Play
+import play.api.http.HeaderNames
+import play.api.mvc.{Action, Controller}
+import play.api.libs.ws.WS
 import play.api.libs.json._
+
+import models.ChatBotMessage
 import utils.Bot
 
-import scala.concurrent.duration._
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.{Await, Future}
-import scala.util.{Failure, Success}
-
-case class GoogleAuthTokenExpired(msg: String) extends Exception(msg)
 
 object Application extends Controller {
 
@@ -36,6 +28,7 @@ object Application extends Controller {
     var body: String = ""
     var text: String = ""
     try {
+      // TODO(delyan): simplify
       val messaging = ((((request.body.asJson.get \ "entry")(0)) \ "messaging")(0))
       val fbid = ((messaging \ "sender") \ "id").toString
       val query = ((messaging \ "message") \ "text").toString.replace("\"", "")
