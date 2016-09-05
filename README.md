@@ -129,3 +129,11 @@ Run with a heroku DB connection: `DATABASE_URL=$(heroku config:get DATABASE_URL 
 
 ## ChatBot
  - "4. Subscribe the App to the Page - Using the Page Access Token generated in the previous step, make the following call. This will subscribe your app to get updates for this specific Page." `curl -ik -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=`cat ~/.fb-token`"`
+
+
+## Heroku instance config
+### Environment variables:
+ - `DATABASE_URL` - provided by Heroku when postgres is provisioned
+ - `GOOGLE_CLIENT_ID`
+ - `GOOGLE_CLIENT_SECRET`
+ - `GOOGLE_CLIENT_CALLBACK`
