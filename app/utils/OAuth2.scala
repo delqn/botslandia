@@ -5,16 +5,12 @@ import play.api.http.{MimeTypes, HeaderNames}
 import play.api.libs.ws.WS
 import play.api.mvc.Results
 
-// from -- -https://github.com/Sage-Bionetworks/dashboard-ui/blob/master/app/controllers/Auth.scala
-
 import scala.concurrent.{Await, Future}
 import scala.concurrent.duration._
-import scala.util.{Success, Failure}
 
 import play.api.Play.current
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-// ----
 
 class OAuth2(application: Application) {
   lazy val googleAuthId = application.configuration.getString("google.client.id").get

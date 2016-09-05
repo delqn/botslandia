@@ -38,4 +38,6 @@ libraryDependencies += "org.webjars.bower" % "dropzone" % "4.3.0"
 
 libraryDependencies += "org.webjars" % "bootstrap" % "3.3.1"
 
+libraryDependencies += "com.dropbox.core" % "dropbox-core-sdk" % "2.0.1"
+
 // play.Project.playScalaSettings

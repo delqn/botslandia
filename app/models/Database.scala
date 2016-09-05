@@ -10,19 +10,20 @@ object Database extends Schema {
   val kikBotMessagesTable = table[KikBotMessage]("kikbotmessages")
 
   on(usersTable) {
-    u => declare { u.id is(autoIncremented("users_id_seq")) }
+    u => declare { u.id is autoIncremented("users_id_seq") }
   }
 
   on(filesTable) {
-    f => declare { f.id is(autoIncremented("files_id_seq")) }
+    f => declare { f.id is autoIncremented("files_id_seq") }
   }
 
   on(chatBotMessagesTable) {
-    f => declare { f.id is(autoIncremented("files_id_seq")) }
+    f => declare { f.id is autoIncremented("files_id_seq") }
   }
 
   on(kikBotMessagesTable) {
-    f => declare { f.id is(autoIncremented("files_id_seq")) }
+    f => declare { f.id is autoIncremented("files_id_seq") }
   }
+
 }
 
