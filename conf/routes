@@ -1,0 +1,35 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+# Home page
+GET    /                           controllers.Application.index
+
+# Map static resources from the /public folder to the /assets URL path
+GET    /assets/*file               controllers.Assets.at(path="/public", file)
+
+GET    /api controllers.Application.api
+
+# Delyan: http://ticofab.io/react-js-tutorial-with-play_scala_webjars/
+GET    /webjars/*file              controllers.WebJarAssets.at(file)
+
+POST    /target                    controllers.Application.fileUpload
+
+GET    /_oauth-callback            controllers.Application.oauthCallback(code: Option[String], state: Option[String])
+GET    /_oauth-success             controllers.Application.oauthSuccess
+GET    /_oauth-success/            controllers.Application.oauthSuccess
+GET    /_token-info                controllers.Application.tokenInfo
+GET    /_user-info                 controllers.Application.userInfoJson
+GET    /user-profile               controllers.Application.userProfile
+GET    /user-info                  controllers.Application.userInfo
+GET    /login-google               controllers.Application.loginGoogle
+GET    /logout                     controllers.Application.logout
+GET    /file                       controllers.Application.file
+
+GET    /chatbot                    controllers.Application.chatBot
+POST   /chatbot                    controllers.Application.chatBot
+POST   /kik-bot                    controllers.Application.kikBot
+GET    /kik-bot                    controllers.Application.kikBotGetConfig
+GET    /msbot                      controllers.Application.msBot
+POST   /msbot                      controllers.Application.msBot

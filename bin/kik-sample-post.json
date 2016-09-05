@@ -1,0 +1,15 @@
+{
+  "messages": [
+    {
+        "body": "Hi",
+        "from": "delyan",
+        "timestamp": 1460684722317,
+        "mention": null,
+        "participants": [ "delyan" ],
+        "readReceiptRequested": true,
+        "type": "text",
+        "id": "d423b58c-9531-4735-9536-81e5b8f44050",
+        "chatId": "0c4701eba03e11cec0a13ecbd8e96093718f2db18b5e85e9c29ecdcaa0f32dcd"
+    }
+  ]
+}

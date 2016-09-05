@@ -1,0 +1,8 @@
+@mixin calc($property, $expression) {
+    /* Chrome, Safari */
+    #{$property}: -webkit-calc(#{$expression});
+    /* Firefox */
+    #{$property}: -moz-calc(#{$expression});
+    /* Etc */
+    #{$property}: calc(#{$expression});
+}

@@ -1,0 +1,18 @@
+@import 'dimensions';
+@import 'mixins';
+
+/**
+ * Style to extend to make a component take up the entire viewport
+ * not including the header and menu.
+ */
+.full-screen {
+    @include calc(width, '100% - ' + $menu-width);
+    @include calc(height, '100% - ' + $header-height);
+    position: fixed;
+    top: $header-height;
+    left: $menu-width;
+}
+
+h1 {
+    background-color: gray;
+}

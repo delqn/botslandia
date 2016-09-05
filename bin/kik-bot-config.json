@@ -1,0 +1,9 @@
+{
+  "webhook": "https://botslandia.herokuapp.com/kik-bot",
+  "features": {
+    "manuallySendReadReceipts": true,
+    "receiveReadReceipts": true,
+    "receiveDeliveryReceipts": true,
+    "receiveIsTyping": true
+  }
+}

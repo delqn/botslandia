@@ -1,0 +1,112 @@
+@(user: Option[User], loginUrl: Option[String], files: List[File])
+
+@main("Botslandia", loginUrl) {
+
+    @if(user.isDefined) {
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Botslandia</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                @user match {
+                    case Some(user) => {
+                        <li><img src="@user.picture" alt="..." class="img-circle" height="50px"></li>
+                        <li><a href="@routes.Application.logout">logout</a></li>
+                    }
+                    case None => { <li><a href="@routes.Application.loginGoogle">Login</a></li> }
+                }
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>Create your bots here</h1>
+        <p>This is a simple tool to help you create bots.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Botslandia</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+
+            <form id="my-awesome-dropzone" action="/target" class="dropzone"></form>
+            <div id="content"></div>
+            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        </div>
+    </div>
+
+    <hr>
+
+    <ul>
+        @for(file <- files) {
+          <li>@file.filename</li>
+        }
+    </ul>
+
+    <footer>
+        <p>© 2016 Botslandia</p>
+    </footer>
+</div>
+
+
+
+
+} else {
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Botslandia</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>&nbsp;</li>
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>Create your bot!</h1>
+        <p>This is a simple tool to help you create bots.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <center><a class="btn btn-block btn-social btn-google" href="/login-google"><i class="fa fa-google"></i>Sign in with Google</a></center>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>© 2016 Botslandia</p>
+    </footer>
+</div>
+    }
+}

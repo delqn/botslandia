@@ -1,0 +1,40 @@
+@(title: String, loginUrl: Option[String])(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@title</title>
+
+    <meta name="google-site-verification" content="i1dUky7eT4m26LZfT6Xs1oV_ghhpO5dovnwTzCPHukU" />
+
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/dumbbell.jpg")">
+    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
+
+    <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("dropzone.css"))'>
+    <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))'>
+
+    <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-theme.min.css"))'>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <script type="text/javascript" src="@routes.WebJarAssets.at(WebJarAssets.fullPath("react", "react.js"))"></script>
+    <script type="text/javascript" src="@routes.WebJarAssets.at(WebJarAssets.locate("dropzone.min.js"))"></script>
+</head>
+<body>
+@content
+</body>
+</html>
