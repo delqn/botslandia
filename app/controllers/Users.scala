@@ -14,7 +14,7 @@ import exceptions.GoogleAuthTokenExpired
 import models.File
 
 
-class User extends Controller {
+object Users extends Controller {
 
   lazy val oauth2 = new utils.OAuth2(Play.current)
 
@@ -24,7 +24,7 @@ class User extends Controller {
       // Check how much longer we have the token for and perhaps ask for reauth
       try{
         val user = oauth2.getUser(request.session)
-        val files = File.findAll()
+        val files = File.findAll(user.id)
         Ok(views.html.index(Some(user), None, files))
       } catch {
         case expired: GoogleAuthTokenExpired =>

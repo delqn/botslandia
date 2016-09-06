@@ -1,0 +1,19 @@
+@(user: Option[User], tokens: List[Token], loginUrl: Option[String])
+
+@main(user, "Botslandia", loginUrl) {
+
+@if(user.isDefined) {
+
+<ul>
+    @for(token <- tokens) {
+    <li>@token.service  @token.token <form method="POST"><input type="hidden" name="tokenId" value="@token.id"><input type="hidden" name="delete" value="delete"><input type="submit" value="delete"></form></li>
+    }
+</ul>
+
+<form method="POST">
+    <input name="token" value="" />
+    <input type="submit">
+</form>
+
+}
+}

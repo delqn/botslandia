@@ -9,12 +9,12 @@ import play.api.Play
 import play.api.mvc.{Action, Controller}
 
 
-class Auth extends Controller {
+object Auth extends Controller {
 
   lazy val oauth2 = new utils.OAuth2(Play.current)
 
   def oauthSuccess = Action { request =>
-    Redirect(routes.Application.index)//.withSession("oauth-token" -> request.session.get("oauth-token"))
+    Redirect(routes.Users.index)//.withSession("oauth-token" -> request.session.get("oauth-token"))
   }
 
   def loginGoogle = Action {
@@ -23,7 +23,7 @@ class Auth extends Controller {
   }
 
   def logout = Action {
-    Redirect(routes.Application.index).withSession("oauth-token" -> "logged-out")
+    Redirect(routes.Users.index).withSession("oauth-token" -> "logged-out")
   }
 
   def oauthCallback(codeOpt: Option[String] = None, stateOpt: Option[String] = None) = Action.async { implicit request =>
@@ -34,7 +34,7 @@ class Auth extends Controller {
     } yield {
       if (state == oauthState) {
         oauth2.exchangeAuthorizationCodeForTokens(code).map { accessToken =>
-          Redirect(routes.Application.oauthSuccess).withSession("oauth-token" -> accessToken)
+          Redirect(routes.Auth.oauthSuccess).withSession("oauth-token" -> accessToken)
         }.recover {
           case ex: IllegalStateException => Unauthorized(ex.getMessage)
         }

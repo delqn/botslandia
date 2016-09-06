@@ -1,18 +1,20 @@
 package controllers
 
-import scala.concurrent.ExecutionContext.Implicits.global
+import java.util.UUID
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import play.api.Play
 import play.api.http.HeaderNames
 import play.api.mvc.{Action, Controller}
 import play.api.libs.ws.WS
 import play.api.libs.json._
-
-import models.ChatBotMessage
+import models.{ChatBotMessage, Token}
 import utils.Bot
 
 
 object Application extends Controller {
+
+  lazy val oauth2 = new utils.OAuth2(Play.current)
 
   def api = Action {
     Ok("{}").as("application/json")
@@ -78,4 +80,28 @@ object Application extends Controller {
   def msBot() = Action { request =>
       Ok("ok")
   }
+
+  def tokens(service: String) = Action { request =>
+    val user = oauth2.getUser(request.session)
+    val state = UUID.randomUUID().toString
+    val loginURL = oauth2.getLoginURL(state)
+    Ok(views.html.tokens(Some(user), Token.findAll(user.id), Some(loginURL)))
+  }
+
+  def createTokens(service: String) = Action { request =>
+    val shouldDelete = request.body.asFormUrlEncoded match {
+      case Some(map) => map.getOrElse("delete", Seq("keep")).head == "delete"
+      case _ => false
+    }
+    val userId = oauth2.getUser(request.session).id
+    if (shouldDelete) {
+      val tokenId = request.body.asFormUrlEncoded.get("tokenId").head
+      models.Token.delete(tokenId.toLong)
+    } else {
+      val token = request.body.asFormUrlEncoded.get("token").head
+      models.Token.create(new Token(0, userId, "kik", token))
+    }
+    Redirect(routes.Application.tokens(service))
+  }
+
 }

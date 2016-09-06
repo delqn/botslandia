@@ -1,5 +1,5 @@
-@(file: String)
+@(user: Option[User], file: String)
 
-@main("Experiment Tracker", None) {
-    <p>@file</p>
+@main(user, "Experiment Tracker", None) {
+<p>@file</p>
 }

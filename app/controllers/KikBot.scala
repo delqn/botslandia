@@ -13,7 +13,8 @@ import models.{ChatBotMessage, KikBotMessage}
 import utils.Bot
 
 
-class KikBot extends Controller {
+object KikBot extends Controller {
+
   def kikBot() = Action.async { request =>
     implicit val app = Play.current
     val token = sys.env("KIK_TOKEN")

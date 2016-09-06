@@ -17,30 +17,13 @@ case class User(id: Long,
 object User {
 
   // returns existing user by email address, or null if not exists
-  def apply(email: String): User = {
-    inTransaction {
-      findByEmailQ(email).headOption.getOrElse(null)
-    }
-  }
-
-  def allQ: Query[User] = from(Database.usersTable) {
-    user => select(user)
-  }
-
+  def apply(email: String): User = inTransaction { findByEmailQ(email).headOption.orNull }
+  def allQ: Query[User] = from(Database.usersTable) { user => select(user) }
   def findByGoogleID(google_user_id: String): Query[User] = from(allQ) {
     user => where(user.google_user_id === google_user_id).select(user)
   }
-
-  def findByEmailQ(email: String): Query[User] = from(allQ) {
-    user => where(user.email === email).select(user)
-  }
-
-  def findAll(): List[User] = {
-    inTransaction {
-      allQ.toList
-    }
-  }
-
+  def findByEmailQ(email: String): Query[User] = from(allQ) { user => where(user.email === email).select(user) }
+  def findAll(): List[User] = inTransaction { allQ.toList }
   def create(user: User): User = {
     inTransaction {
     val users = User.findByGoogleID(user.google_user_id)
@@ -52,4 +35,5 @@ object User {
       }
     }
   }
+
 }
